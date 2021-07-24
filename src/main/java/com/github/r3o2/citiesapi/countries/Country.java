@@ -1,9 +1,6 @@
 package com.github.r3o2.citiesapi.countries;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table (name = "pais")
@@ -17,10 +14,12 @@ public class Country {
 
     @Column(name = "nome_pt")
     private String portugueseName;
- //é necessário mapear por causa do banco de dados
+
+    //é necessário mapear por causa do banco de dados capturado
     @Column(name = "sigla")
     private String code;
-    //não necessário mapear por causa do banco de dados
+
+    //não necessário mapear por causa do banco de dados capturado
     private Integer bacen;
 
     public Country() {

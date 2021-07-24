@@ -2,6 +2,7 @@ package com.github.r3o2.citiesapi.distances;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +24,25 @@ public class DistanceResource {
     @GetMapping("/by-points")
     public ResponseEntity byPoints(@RequestParam(name = "from") final Long city1,
                                    @RequestParam(name = "to") final Long city2) {
-        log.info("byPoints");
-        return ResponseEntity.ok().body(service.distanceByPointsInMiles(city1, city2));
+        try{
+            log.info("byPoints");
+            return ResponseEntity.ok().body("A distância da cidade " + city1 + " até a cidade " + city2 + " em milhas é: " + service.distanceByPointsInMiles(city1, city2));
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cidade " + city1 + " ou Cidade " + city2 + "\nNão encontrada");
+        }
+
     }
 
     @GetMapping("/by-cube")
     public ResponseEntity byCube(@RequestParam(name = "from") final Long city1,
-                         @RequestParam(name = "to") final Long city2) {
-        log.info("byCube");
-        return ResponseEntity.ok().body(service.distanceByCubeInMeters(city1, city2));
+                                 @RequestParam(name = "to") final Long city2) {
+        try{
+            log.info("byCube");
+            return ResponseEntity.ok().body("A distância da cidade " + city1 + " até a cidade " + city2 + " em metros é: " + service.distanceByCubeInMeters(city1, city2));
+        }
+        catch(Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cidade " + city1 + " ou Cidade " + city2 + "\nNão encontrada");
+        }
     }
-
-
 }

@@ -1,7 +1,7 @@
 package com.github.r3o2.citiesapi.countries;
 
 
-import com.github.r3o2.citiesapi.countries.Country;
+
 import com.github.r3o2.citiesapi.countries.repository.CountryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
